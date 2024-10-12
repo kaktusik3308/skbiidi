@@ -400,6 +400,63 @@ Anim:AdjustSpeed(0.25)
 end
  
 --[[END OF SERIOUS PUNCH ANIM]]
+
+--[[Table Flip]]
+ 
+ 
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+ 
+ 
+local animationId = 11365563255
+ 
+ 
+local player = game.Players.LocalPlayer
+ 
+local character = player.Character or player.CharacterAdded:Wait()
+ 
+local humanoid = character:WaitForChild("Humanoid")
+ 
+ 
+local function onAnimationPlayed(animationTrack)
+ 
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+ 
+local p = game.Players.LocalPlayer
+ 
+local Humanoid = p.Character:WaitForChild("Humanoid")
+ 
+ 
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+ 
+    animTrack:Stop()
+ 
+end
+ 
+ 
+local AnimAnim = Instance.new("Animation")
+ 
+AnimAnim.AnimationId = "rbxassetid://13146710762"
+ 
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+ 
+ 
+local startTime = 0
+ 
+ 
+Anim:Play()
+ 
+Anim:AdjustSpeed(0.25)
+ 
+Anim.TimePosition = startTime
+ 
+Anim:AdjustSpeed(0.25)
+ 
+ 
+    end
+ 
+end
+ 
+--[[END OF TABLE FLIP ANIM]]
  
 --[[Wall combo]]
  
@@ -490,26 +547,21 @@ end
 local AnimAnim = Instance.new("Animation")
  
 AnimAnim.AnimationId = "rbxassetid://15957361339"
-
 local player = game.Players.LocalPlayer
 repeat wait() until player.Character
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
 -- messages u wanna send
 local messages = {"i am vegeta."}
-
 -- the function to send the messages
 local function sendMessage(text)
     ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(text, "All")
 end
-
 for _, message in ipairs(messages) do
     sendMessage(message)
-    wait(1.7) -- Wait time
+    wait(0.1) -- Wait time
 end
-
 local Anim = Humanoid:LoadAnimation(AnimAnim)
  
  
@@ -736,13 +788,13 @@ local animationIdsToStop = {
  
 local replacementAnimations = {
  
-    ["10469493270"] = "rbxassetid://13532562418", --punch1
+    ["10469493270"] = "rbxassetid://10469493270", --punch1
  
-    ["10469630950"] = "rbxassetid://13532600125", --punch2
+    ["10469630950"] = "rbxassetid://10469630950", --punch2
  
-    ["10469639222"] = "rbxassetid://13532604085", --punch3
+    ["10469639222"] = "rbxassetid://10469639222", --punch3
  
-    ["10469643643"] = "rbxassetid://13294471966", --punch4
+    ["10469643643"] = "rbxassetid://17889290569", --punch4
  
     ["17859015788"] = "rbxassetid://18715736372", --punch idk
  
@@ -903,48 +955,39 @@ local tool = Instance.new("Tool")
 tool.Name = "Teleport"
 tool.RequiresHandle = false -- Handle
 tool.Parent = game.Players.LocalPlayer.Backpack
-
 local mouseConnection
 local animationTrack -- Variable to store the animation track
-
 -- Load and play the animation
 local function playAnimation()
     local player = game.Players.LocalPlayer
     if player and player.Character and player.Character:FindFirstChild("Humanoid") then
         local humanoid = player.Character:FindFirstChild("Humanoid")
-
         -- Replace "ANIMATION_ID" with the actual animation ID you want to play
         local animation = Instance.new("Animation")
         animation.AnimationId = "rbxassetid://15957361339"
-
         -- Load and play the animation
         animationTrack = humanoid:LoadAnimation(animation)
         animationTrack:Play()
     end
 end
-
 -- Teleport function
 local function teleportToClick(targetPosition)
     local player = game.Players.LocalPlayer
     if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
         -- Teleport the player
         player.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
-
         -- Play animation after teleporting
         playAnimation()
     end
 end
-
 -- Tool equipped event
 tool.Equipped:Connect(function()
     local player = game.Players.LocalPlayer
     local mouse = player:GetMouse()
-
     mouseConnection = mouse.Button1Down:Connect(function()
         teleportToClick(mouse.Hit.p)
     end)
 end)
-
 -- Tool unequipped event
 tool.Unequipped:Connect(function()
     if mouseConnection then
