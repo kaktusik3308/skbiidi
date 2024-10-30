@@ -1,0 +1,393 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local TextButton = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local ImageLabel = Instance.new("ImageLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(238, 255, 85)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.421836227, 0, 0.378737539, 0)
+Frame.Size = UDim2.new(0, 226, 0, 161)
+
+UICorner.Parent = Frame
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 187, 14)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.178230211, 0, 0.256211191, 0)
+TextButton.Size = UDim2.new(0, 144, 0, 78)
+TextButton.Font = Enum.Font.Arcade
+TextButton.Text = "CELL SAGA GOHAN"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextWrapped = true
+
+UICorner_2.Parent = TextButton
+
+ImageLabel.Parent = Frame
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 1.000
+ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel.BorderSizePixel = 0
+ImageLabel.Position = UDim2.new(-0.395929247, 0, -0.068385154, 0)
+ImageLabel.Size = UDim2.new(0, 81, 0, 183)
+ImageLabel.Image = "rbxassetid://10564439752"
+
+-- Scripts:
+
+local function UJKOL_fake_script() -- Frame.Drag 
+	local script = Instance.new('LocalScript', Frame)
+
+	-- make everything draggable and cool!
+	
+	script.Parent.Draggable = true
+	script.Parent.Active = true
+	
+end
+coroutine.wrap(UJKOL_fake_script)()
+local function KQOM_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		local player = game.Players.LocalPlayer
+		local character = player.Character or player.CharacterAdded:Wait()
+		local humanoid = character:WaitForChild("Humanoid")
+	
+		local playerGui = player.PlayerGui
+		local hotbar = playerGui:FindFirstChild("Hotbar")
+		local backpack = hotbar:FindFirstChild("Backpack")
+		local hotbarFrame = backpack:FindFirstChild("Hotbar")
+		local baseButton1 = hotbarFrame:FindFirstChild("1").Base
+		local baseButton2 = hotbarFrame:FindFirstChild("2").Base
+		local baseButton3 = hotbarFrame:FindFirstChild("3").Base
+		local baseButton4 = hotbarFrame:FindFirstChild("4").Base
+	
+	
+		local ToolName1 = baseButton1.ToolName
+		local ToolName2 = baseButton2.ToolName
+		local ToolName3 = baseButton3.ToolName
+		local ToolName4 = baseButton4.ToolName
+	
+	
+		ToolName1.Text = "Finger Gun"
+		ToolName2.Text = "Frenzy Combo"
+		ToolName3.Text = "Bursting Palm"
+		ToolName4.Text = "Rising Dragon"
+	
+		local localScript = backpack:WaitForChild("LocalScript")
+	
+		local cooldownGui = localScript:WaitForChild("Cooldown")
+	
+	
+		cooldownGui.BackgroundColor3 = Color3.fromRGB(255, 215, 0)
+	
+	
+		local screenGui = playerGui:WaitForChild("ScreenGui")
+	
+		local magicHealth = screenGui:WaitForChild("MagicHealth")
+	
+		local health = magicHealth:WaitForChild("Health")
+	
+		local Bar = health:WaitForChild("Bar")
+	
+		local bar = Bar:WaitForChild("Bar")
+	
+		bar.ImageColor3 = Color3.fromRGB(255, 215, 0)
+	
+		local function findGuiAndSetText()
+	
+			local screenGui = playerGui:FindFirstChild("ScreenGui")
+	
+			if screenGui then
+	
+				local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+	
+				if magicHealthFrame then
+	
+					local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+	
+					if textLabel then
+	
+						textLabel.Text = "I WONT WATCH THIS ANYMORE!"
+	
+					end
+	
+				end
+	
+			end
+	
+		end
+	
+		playerGui.DescendantAdded:Connect(findGuiAndSetText)
+	
+		findGuiAndSetText()
+	
+		local replacementAnimations = { 
+			["rbxassetid://12983333733"] = {"rbxassetid://12832505612", 0.3, 0, Enum.AnimationPriority.Action3},  -- 3rd move 
+			["rbxassetid://11365563255"] = {"rbxassetid://15121659862", 0.3, 0, Enum.AnimationPriority.Action3},  -- 2nd move
+			["rbxassetid://15955393872"] = {"rbxassetid://16310343179", 1, 0, Enum.AnimationPriority.Action3},  -- wallcombo
+			["rbxassetid://12510170988"] = {"rbxassetid://18897119503", 1, 0, Enum.AnimationPriority.Action3},  -- 4rd move not ult
+			["rbxassetid://10471336737"] = {"rbxassetid://12509505723", 1.3, 0, Enum.AnimationPriority.Action3},  -- 3rd move not ult
+			["rbxassetid://10466974800"] = {"rbxassetid://13560306510", 2.5, 0, Enum.AnimationPriority.Action3},  -- 2nd move not ult
+			["rbxassetid://10468665991"] = {"rbxassetid://16746824621", 1, 1.6, Enum.AnimationPriority.Action3},  -- 1st move not ult
+			["rbxassetid://12447707844"] = {"rbxassetid://17292505729", 1, 0, Enum.AnimationPriority.Action3},  -- Ultimate
+		}
+	
+		local function onAnimationPlayed(animationTrack)
+			print(animationTrack.Animation.AnimationId)
+			if replacementAnimations[tostring(animationTrack.Animation.AnimationId)] then
+	
+				for _, animTrack in pairs(humanoid:GetPlayingAnimationTracks()) do
+					if animTrack.Animation.AnimationId ~= "rbxassetid://7815618175" and animTrack.Animation.AnimationId ~= "rbxassetid://7807831448" then
+						animTrack:Stop()
+					end
+				end
+	
+				local AnimAnim = Instance.new("Animation")
+				AnimAnim.AnimationId = replacementAnimations[animationTrack.Animation.AnimationId][1]
+	
+				local Anim = humanoid:LoadAnimation(AnimAnim)
+				Anim.Priority = replacementAnimations[animationTrack.Animation.AnimationId][4]
+	
+				Anim:Play()
+	
+				Anim:AdjustSpeed(0.01)
+				Anim.TimePosition = replacementAnimations[animationTrack.Animation.AnimationId][3]
+				Anim:AdjustSpeed(replacementAnimations[animationTrack.Animation.AnimationId][2])
+			end
+		end
+	
+		humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		local tool = Instance.new("Tool")
+		tool.Name = "Run"
+	
+		tool.Parent = game.Players.LocalPlayer.Backpack
+		tool.RequiresHandle = false
+	
+		local moving = false
+		local player = game.Players.LocalPlayer
+		local character = player.Character or player.CharacterAdded:Wait()
+		local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+		local humanoid = character:WaitForChild("Humanoid")
+		local runService = game:GetService("RunService")
+		local movementSpeed = 125 
+	
+		local animation = Instance.new("Animation")
+		animation.AnimationId = "rbxassetid://18897115785" 
+		local animator = humanoid:FindFirstChildOfClass("Animator") or humanoid:WaitForChild("Animator")
+		local animationTrack
+	
+		local function moveForward()
+			while moving do
+				local forwardDirection = humanoidRootPart.CFrame.LookVector
+				humanoidRootPart.Velocity = forwardDirection * movementSpeed
+				runService.Stepped:Wait()
+			end
+		end
+	
+		tool.Equipped:Connect(function()
+			moving = true
+	
+			for i, v in character:GetChildren() do
+				if v:IsA("Part") then
+					local Attachment = Instance.new("Attachment")
+					local ParticleEmitter = Instance.new("ParticleEmitter")
+	
+	
+					Attachment.Parent = v
+					Attachment.Name = "sigmarun"
+	
+					ParticleEmitter.Brightness = 5
+					-- Adjusted color values to bright yellow and white for Super Saiyan 2 effect
+					ParticleEmitter.Color = ColorSequence.new({
+						ColorSequenceKeypoint.new(0, Color3.new(1, 0.839, 0), 0),  -- Bright yellow at the start
+						ColorSequenceKeypoint.new(1, Color3.new(1, 1, 0.8), 0)     -- Lighter yellow-white at the end
+					})
+					ParticleEmitter.Drag = 3
+					ParticleEmitter.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+					ParticleEmitter.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+					ParticleEmitter.Lifetime = NumberRange.new(0.5, 0.5)
+					ParticleEmitter.LightEmission = 1  -- Increased for a glowing effect
+					ParticleEmitter.LockedToPart = true
+					ParticleEmitter.Rate = 2.5
+					ParticleEmitter.Size = NumberSequence.new({
+						NumberSequenceKeypoint.new(0, 2, 0),
+						NumberSequenceKeypoint.new(1, 2, 0)
+					})
+					ParticleEmitter.Speed = NumberRange.new(0, 0)
+					ParticleEmitter.Texture = [[http://www.roblox.com/asset/?id=14904853757]]
+					ParticleEmitter.Transparency = NumberSequence.new({
+						NumberSequenceKeypoint.new(0, 1, 0),
+						NumberSequenceKeypoint.new(0.198684, 0.491803, 0),
+						NumberSequenceKeypoint.new(0.501316, 0.513661, 0),
+						NumberSequenceKeypoint.new(0.798684, 0.497268, 0),
+						NumberSequenceKeypoint.new(1, 1, 0)
+					})
+					ParticleEmitter.ZOffset = -1
+					ParticleEmitter.Parent = Attachment
+	
+	
+				end
+			end
+			animationTrack = animator:LoadAnimation(animation)
+			animationTrack:Play()
+			moveForward()
+		end)
+	
+		tool.Unequipped:Connect(function()
+			moving = false
+			for i, v in character:GetDescendants() do
+				if v:IsA("Attachment") and v:FindFirstChild("ParticleEmitter") and v.Name == "sigmarun" then
+					v:Destroy()
+				end
+			end
+			if animationTrack then
+				animationTrack:Stop()
+			end
+		end)
+	
+	
+		-- Create a new ParticleEmitter and configure it for SSJ1 aura
+		local ParticleEmitter = Instance.new("ParticleEmitter")
+	
+		-- Adjust the ParticleEmitter properties for a Super Saiyan 1 aura
+		ParticleEmitter.Brightness = 2
+	
+		-- Color values adjusted for a bright yellow aura
+		ParticleEmitter.Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1, 1, 0), 0),  -- Bright yellow at the start
+			ColorSequenceKeypoint.new(1, Color3.new(1, 0.843, 0), 0) -- Softer yellow at the end
+		})
+	
+		ParticleEmitter.Drag = 1 -- Lower drag for a more dynamic effect
+		ParticleEmitter.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+		ParticleEmitter.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+		ParticleEmitter.Lifetime = NumberRange.new(0.5, 0.5)  -- Short lifetime for continuous aura
+		ParticleEmitter.LightEmission = 1.5  -- Increased for a glowing effect
+		ParticleEmitter.LockedToPart = true  -- Keep it locked to the part
+		ParticleEmitter.Rate = 20  -- Higher rate for a fuller aura
+		ParticleEmitter.Size = NumberSequence.new({
+			NumberSequenceKeypoint.new(0, 7, 0),
+			NumberSequenceKeypoint.new(1, 7, 0)  -- Slightly larger size for the aura
+		})
+		ParticleEmitter.Speed = NumberRange.new(0, 0)  -- No speed for a static effect
+		ParticleEmitter.Texture = "rbxassetid://14904853757"  -- Use the specified original asset ID for the particle texture
+		ParticleEmitter.Transparency = NumberSequence.new({
+			NumberSequenceKeypoint.new(0, 0, 0),  -- Fully visible at start
+			NumberSequenceKeypoint.new(1, 0.5, 0)  -- Gradually becomes slightly transparent
+		})
+		ParticleEmitter.ZOffset = 1  -- Bring the aura in front of the character
+	
+		-- Parent to the torso
+		local player = game.Players.LocalPlayer  -- Change to a server script if needed
+		local character = player.Character or player.CharacterAdded:Wait()
+		local torso = character:WaitForChild("Torso") or character:WaitForChild("UpperTorso")  -- Get the torso (for R15, use UpperTorso)
+	
+		local attachment = Instance.new("Attachment")  -- Create an Attachment
+		attachment.Parent = torso  -- Parent it to the torso
+		attachment.Position = Vector3.new(0, 0, 0)  -- Position it directly at the torso center
+	
+		ParticleEmitter.Parent = attachment  -- Set the ParticleEmitter to the attachment
+	
+		-- Keep the ParticleEmitter enabled indefinitely
+		ParticleEmitter.Enabled = true  -- Ensure the ParticleEmitter is enabled
+	
+		local p = game.Players.LocalPlayer
+		local Humanoid = p.Character:WaitForChild("Humanoid")
+	
+		for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+			animTrack:Stop()
+		end
+	
+		local AnimAnim = Instance.new("Animation")
+		AnimAnim.AnimationId = "rbxassetid://14611879113" -- Replace with your animation ID
+	
+		local Anim = Humanoid:LoadAnimation(AnimAnim)
+	
+		local startTime = 0.05
+	
+		Anim:Play()
+		Anim:AdjustSpeed(0)
+		Anim.TimePosition = startTime
+		Anim:AdjustSpeed(1)
+	
+	
+		-- LocalScript to add health display GUI and an image above it to the executing player's head
+	
+		-- Wait for the player's character to load
+		local player = game.Players.LocalPlayer
+		local character = player.Character or player.CharacterAdded:Wait()
+		local humanoid = character:WaitForChild("Humanoid")
+		local head = character:WaitForChild("Head")
+	
+		-- Create and configure BillboardGui for the health display
+		local HealthBillboardGui = Instance.new("BillboardGui")
+		local HealthTextLabel = Instance.new("TextLabel")
+	
+		-- Set up health display BillboardGui properties
+		HealthBillboardGui.Parent = head
+		HealthBillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+		HealthBillboardGui.Active = true
+		HealthBillboardGui.LightInfluence = 1.000
+		HealthBillboardGui.Size = UDim2.new(4, 0, 1, 0)
+		HealthBillboardGui.StudsOffsetWorldSpace = Vector3.new(0, 3, 0) -- Offset for the health display
+	
+		-- Set up HealthTextLabel properties
+		HealthTextLabel.Parent = HealthBillboardGui
+		HealthTextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		HealthTextLabel.BackgroundTransparency = 1.000
+		HealthTextLabel.BorderColor3 = Color3.fromRGB(27, 42, 53)
+		HealthTextLabel.Size = UDim2.new(1, 0, 1, 0)
+		HealthTextLabel.Font = Enum.Font.Arcade
+		HealthTextLabel.Text = "100%"
+		HealthTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+		HealthTextLabel.TextScaled = true
+		HealthTextLabel.TextSize = 14.000
+		HealthTextLabel.TextStrokeTransparency = 0.000
+		HealthTextLabel.TextWrapped = true
+	
+		-- Function to update health percentage
+		local function updateHealth()
+			local currentHealth = humanoid.Health
+			local maxHealth = humanoid.MaxHealth
+			local healthPercentage = (currentHealth / maxHealth) * 100
+			HealthTextLabel.Text = string.format("%.1f%%", healthPercentage)
+		end
+	
+		-- Connect HealthChanged event to update health display
+		humanoid.HealthChanged:Connect(updateHealth)
+		updateHealth()  -- Initial update to show the starting health
+	end)
+	
+end
+coroutine.wrap(KQOM_fake_script)()
