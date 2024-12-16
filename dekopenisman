@@ -1,0 +1,798 @@
+--Move & Ultimate Names
+ 
+local player = game.Players.LocalPlayer
+ 
+local playerGui = player.PlayerGui
+ 
+local hotbar = playerGui:FindFirstChild("Hotbar")
+ 
+local backpack = hotbar:FindFirstChild("Backpack")
+ 
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+ 
+local baseButton = hotbarFrame:FindFirstChild("1").Base
+ 
+local ToolName = baseButton.ToolName
+ 
+ 
+ToolName.Text = "bring up so much they wanna kill you"
+ 
+ 
+local player = game.Players.LocalPlayer
+ 
+local playerGui = player.PlayerGui
+ 
+local hotbar = playerGui:FindFirstChild("Hotbar")
+ 
+local backpack = hotbar:FindFirstChild("Backpack")
+ 
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+ 
+local baseButton = hotbarFrame:FindFirstChild("2").Base
+ 
+local ToolName = baseButton.ToolName
+ 
+ 
+ToolName.Text = "dunk like deko getting dunked as a kid"
+ 
+ 
+local player = game.Players.LocalPlayer
+ 
+local playerGui = player.PlayerGui
+ 
+local hotbar = playerGui:FindFirstChild("Hotbar")
+ 
+local backpack = hotbar:FindFirstChild("Backpack")
+ 
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+ 
+local baseButton = hotbarFrame:FindFirstChild("3").Base
+ 
+local ToolName = baseButton.ToolName
+ 
+ 
+ToolName.Text = "throw so far they fall off map"
+ 
+ 
+local player = game.Players.LocalPlayer
+ 
+local playerGui = player.PlayerGui
+ 
+local hotbar = playerGui:FindFirstChild("Hotbar")
+ 
+local backpack = hotbar:FindFirstChild("Backpack")
+ 
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+ 
+local baseButton = hotbarFrame:FindFirstChild("4").Base
+ 
+local ToolName = baseButton.ToolName
+ 
+ 
+ToolName.Text = "Worlds Best Counter"
+ 
+ 
+local Players = game:GetService("Players")
+ 
+local player = Players.LocalPlayer
+ 
+local playerGui = player:WaitForChild("PlayerGui")
+ 
+ 
+local function findGuiAndSetText()
+ 
+    local screenGui = playerGui:FindFirstChild("ScreenGui")
+ 
+    if screenGui then
+ 
+        local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+ 
+        if magicHealthFrame then
+ 
+            local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+ 
+            if textLabel then
+ 
+                textLabel.Text = "penisman"
+ 
+            end
+ 
+        end
+ 
+    end
+ 
+end
+ 
+ 
+playerGui.DescendantAdded:Connect(findGuiAndSetText)
+ 
+findGuiAndSetText()
+ 
+--[[Animations]]
+--[[Move 1]]
+local animationId = 18716113810
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function moveEntireCharacterUpwards()
+    if character then
+        local currentPosition = character.HumanoidRootPart.Position
+        -- Move up by 1 stud every 0.01 seconds (simple movement for whole character)
+        for i = 1, 100 do
+            character:SetPrimaryPartCFrame(CFrame.new(currentPosition + Vector3.new(0, i * 0.01, 0)))
+            wait(0.01)
+        end
+    end
+end
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        local p = game.Players.LocalPlayer
+        local Humanoid = p.Character:WaitForChild("Humanoid")
+
+        -- Stop all currently playing animations
+        for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+            animTrack:Stop()
+        end
+
+        -- Play the new animation
+        local AnimAnim = Instance.new("Animation")
+        AnimAnim.AnimationId = "rbxassetid://12534735382"
+        local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+        local startTime = 0
+        Anim:Play()
+        Anim:AdjustSpeed(1)
+        Anim.TimePosition = startTime
+        Anim:AdjustSpeed(1)
+
+        -- Move the entire character upwards after animation plays
+        moveEntireCharacterUpwards()
+    end
+end
+
+--[[END OF MOVE 1 ANIM]]
+
+--[[Move 2]]
+local animationId = 12296113986
+
+local function moveEntireCharacterUpwardsBy300Studs()
+    if character then
+        local currentPosition = character.HumanoidRootPart.Position
+        character:SetPrimaryPartCFrame(CFrame.new(currentPosition + Vector3.new(0, 300, 0))) -- Move entire character up by 300 studs instantly
+    end
+end
+
+local function onAnimationPlayedMove2(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        local p = game.Players.LocalPlayer
+        local Humanoid = p.Character:WaitForChild("Humanoid")
+
+        -- Stop all currently playing animations
+        for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+            animTrack:Stop()
+        end
+
+        -- Play the new animation
+        local AnimAnim = Instance.new("Animation")
+        AnimAnim.AnimationId = "rbxassetid://18179181663"
+        local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+        local startTime = 0
+        Anim:Play()
+        Anim:AdjustSpeed(1)
+        Anim.TimePosition = startTime
+        Anim:AdjustSpeed(1)
+
+        -- Move the entire character upwards by 300 studs after animation
+        moveEntireCharacterUpwardsBy300Studs()
+    end
+end
+
+--[[END OF MOVE 2 ANIM]]
+
+--[[Move 3]]
+local animationId = 12309835105
+
+local function moveEntireCharacterUpwardsBy50Studs()
+    if character then
+        local currentPosition = character.HumanoidRootPart.Position
+        character:SetPrimaryPartCFrame(CFrame.new(currentPosition + Vector3.new(0, 50, 0))) -- Move entire character up by 50 studs instantly
+    end
+end
+
+local function onAnimationPlayedMove3(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        local p = game.Players.LocalPlayer
+        local Humanoid = p.Character:WaitForChild("Humanoid")
+
+        -- Stop all currently playing animations
+        for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+            animTrack:Stop()
+        end
+
+        -- Play the new animation
+        local AnimAnim = Instance.new("Animation")
+        AnimAnim.AnimationId = "rbxassetid://13501296372"
+        local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+        local startTime = 0.3
+        Anim:Play()
+        Anim:AdjustSpeed(0)
+        Anim.TimePosition = startTime
+        Anim:AdjustSpeed(0.35)
+
+        -- Move the entire character upwards by 50 studs after animation
+        delay(0.3, function()
+            moveEntireCharacterUpwardsBy50Studs()
+        end)
+    end
+end
+
+--[[END OF MOVE 3 ANIM]]
+
+--[[Move 4]]
+local animationId = 13603396939
+
+local function onAnimationPlayedMove4(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        local p = game.Players.LocalPlayer
+        local Humanoid = p.Character:WaitForChild("Humanoid")
+
+        -- Stop all currently playing animations
+        for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+            animTrack:Stop()
+        end
+
+        -- Play the new animation
+        local AnimAnim = Instance.new("Animation")
+        AnimAnim.AnimationId = "rbxassetid://12971270638"
+        local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+        local startTime = 0
+        Anim:Play()
+        Anim:AdjustSpeed(0)
+        Anim.TimePosition = startTime
+        Anim:AdjustSpeed(0.5)
+    end
+end
+
+--[[END OF MOVE 4 ANIM]]
+
+-- Connect animation events to each move
+humanoid.AnimationPlayed:Connect(onAnimationPlayed) -- For Move 1
+humanoid.AnimationPlayed:Connect(onAnimationPlayedMove2) -- For Move 2
+humanoid.AnimationPlayed:Connect(onAnimationPlayedMove3) -- For Move 3
+humanoid.AnimationPlayed:Connect(onAnimationPlayedMove4) -- For Move 4
+
+
+
+ 
+--[[Wall combo]]
+ 
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+ 
+local animationId = 15955393872
+ 
+ 
+local player = game.Players.LocalPlayer
+ 
+local character = player.Character or player.CharacterAdded:Wait()
+ 
+local humanoid = character:WaitForChild("Humanoid")
+ 
+ 
+local function onAnimationPlayed(animationTrack)
+ 
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+ 
+local p = game.Players.LocalPlayer
+ 
+local Humanoid = p.Character:WaitForChild("Humanoid")
+ 
+ 
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+ 
+    animTrack:Stop()
+ 
+end
+ 
+ 
+local AnimAnim = Instance.new("Animation")
+ 
+AnimAnim.AnimationId = "rbxassetid://15943915877"
+ 
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+ 
+ 
+local startTime = 0.05
+ 
+ 
+Anim:Play()
+ 
+Anim:AdjustSpeed(0)
+ 
+Anim.TimePosition = startTime
+ 
+Anim:AdjustSpeed(1)
+ 
+ 
+    end
+ 
+end
+ 
+--[[END OF WALL COMBO ANIM]]
+ 
+--[[Ult Activation]]
+ 
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+ 
+ 
+local animationId = 12447707844
+ 
+ 
+local player = game.Players.LocalPlayer
+ 
+local character = player.Character or player.CharacterAdded:Wait()
+ 
+local humanoid = character:WaitForChild("Humanoid")
+ 
+ 
+local function onAnimationPlayed(animationTrack)
+ 
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+ 
+local p = game.Players.LocalPlayer
+ 
+local Humanoid = p.Character:WaitForChild("Humanoid")
+ 
+ 
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+ 
+    animTrack:Stop()
+ 
+end
+ 
+ 
+local AnimAnim = Instance.new("Animation")
+ 
+AnimAnim.AnimationId = "rbxassetid://17106858586 "
+ 
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+ 
+ 
+local startTime = 0
+ 
+ 
+Anim:Play()
+ 
+Anim:AdjustSpeed(0)
+ 
+Anim.TimePosition = startTime
+ 
+Anim:AdjustSpeed(1)
+ 
+    end
+ 
+end
+--[[END OF ULT ACTIVATION ANIM]]
+ 
+--[[Dash]]
+ 
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+ 
+ 
+local animationId = 10479335397
+ 
+ 
+local player = game.Players.LocalPlayer
+ 
+local character = player.Character or player.CharacterAdded:Wait()
+ 
+local humanoid = character:WaitForChild("Humanoid")
+ 
+ 
+local function onAnimationPlayed(animationTrack)
+ 
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+ 
+local p = game.Players.LocalPlayer
+ 
+local Humanoid = p.Character:WaitForChild("Humanoid")
+ 
+ 
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+ 
+    animTrack:Stop()
+ 
+end
+ 
+ 
+local AnimAnim = Instance.new("Animation")
+ 
+AnimAnim.AnimationId = "rbxassetid://13294790250"
+ 
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+ 
+ 
+local startTime = 0
+ 
+ 
+Anim:Play()
+ 
+Anim:AdjustSpeed(0)
+ 
+Anim.TimePosition = startTime
+ 
+Anim:AdjustSpeed(1.3)
+ 
+ 
+delay(1.8, function()
+ 
+    Anim:Stop()
+ 
+end)
+ 
+ 
+    end
+ 
+end
+ 
+--[[END OF DASH ANIM]]
+ 
+--[[Uppercut]]
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+ 
+ 
+local animationId = 10503381238
+ 
+ 
+local player = game.Players.LocalPlayer
+ 
+local character = player.Character or player.CharacterAdded:Wait()
+ 
+local humanoid = character:WaitForChild("Humanoid")
+ 
+ 
+local function onAnimationPlayed(animationTrack)
+ 
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+ 
+local p = game.Players.LocalPlayer
+ 
+local Humanoid = p.Character:WaitForChild("Humanoid")
+ 
+ 
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+ 
+    animTrack:Stop()
+ 
+end
+ 
+ 
+local AnimAnim = Instance.new("Animation")
+ 
+AnimAnim.AnimationId = "rbxassetid://14900168720"
+ 
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+ 
+ 
+local startTime = 1.3
+ 
+ 
+Anim:Play()
+ 
+Anim:AdjustSpeed(0)
+ 
+Anim.TimePosition = startTime
+ 
+Anim:AdjustSpeed(0.7)
+ 
+ 
+    end
+ 
+end
+ 
+--[[END OF UPPERCUT ANIM]]
+ 
+--[[Downslam]]
+ 
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+ 
+ 
+local animationId = 10470104242
+ 
+ 
+local player = game.Players.LocalPlayer
+ 
+local character = player.Character or player.CharacterAdded:Wait()
+ 
+local humanoid = character:WaitForChild("Humanoid")
+ 
+ 
+local function onAnimationPlayed(animationTrack)
+ 
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+ 
+local p = game.Players.LocalPlayer
+ 
+local Humanoid = p.Character:WaitForChild("Humanoid")
+ 
+ 
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+ 
+    animTrack:Stop()
+ 
+end
+ 
+ 
+local AnimAnim = Instance.new("Animation")
+ 
+AnimAnim.AnimationId = "rbxassetid://12447247483"
+ 
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+ 
+ 
+local startTime = 0
+ 
+ 
+wait(0.2)
+ 
+Anim:Play()
+ 
+Anim:AdjustSpeed(0)
+ 
+Anim.TimePosition = startTime
+ 
+Anim:AdjustSpeed(6)
+ 
+ 
+    end
+ 
+end
+ 
+--[[END OF DOWNSLAM ANIM]]
+ 
+
+
+-- Local Script
+
+local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+local teleportKey = Enum.KeyCode.T -- The key to teleport
+
+-- Function to teleport the player
+local function teleportToCursor()
+    -- Get the character and the HumanoidRootPart
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    
+    -- Get the mouse's target position
+    local targetPosition = mouse.Hit.Position -- Get the position of where the cursor is pointing
+
+    -- Teleport the character to the target position
+    humanoidRootPart.CFrame = CFrame.new(targetPosition + Vector3.new(0, 3, 0)) -- Add 3 studs upwards to avoid being stuck in the ground
+end
+
+-- Connect the teleport function to key press
+game:GetService("UserInputService").InputBegan:Connect(function(input, isProcessed)
+    if isProcessed then return end -- Ignore if the input is already processed
+    if input.KeyCode == teleportKey then
+        teleportToCursor()
+    end
+end)
+
+
+
+
+
+local tool = Instance.new("Tool")
+tool.Name = "Run"
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+tool.RequiresHandle = false
+
+local moving = false
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local humanoid = character:WaitForChild("Humanoid")
+local runService = game:GetService("RunService")
+local movementSpeed = 125 
+
+local animation = Instance.new("Animation")
+animation.AnimationId = "rbxassetid://18897115785" -- You can change this animation if you'd like to make it more SSJG-like
+local animator = humanoid:FindFirstChildOfClass("Animator") or humanoid:WaitForChild("Animator")
+local animationTrack
+
+local function moveForward()
+    while moving do
+        local forwardDirection = humanoidRootPart.CFrame.LookVector
+        humanoidRootPart.Velocity = forwardDirection * movementSpeed
+        runService.Stepped:Wait()
+    end
+end
+
+tool.Equipped:Connect(function()
+    moving = true
+
+    -- Create the particle effect for SSJG aura
+    for i, v in character:GetChildren() do
+        if v:IsA("Part") then
+            local Attachment = Instance.new("Attachment")
+            local ParticleEmitter = Instance.new("ParticleEmitter")
+
+            Attachment.Parent = v
+            Attachment.Name = "sigmarun"
+
+            -- SSJG Aura settings
+            ParticleEmitter.Brightness = 5
+            -- Adjusted color values to bright red and fiery orange for SSJG effect
+            ParticleEmitter.Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, Color3.new(1, 0, 0), 0),  -- Bright red at the start
+                ColorSequenceKeypoint.new(1, Color3.new(1, 0.5, 0), 0)  -- Fiery orange at the end
+            })
+            ParticleEmitter.Drag = 3
+            ParticleEmitter.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+            ParticleEmitter.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+            ParticleEmitter.Lifetime = NumberRange.new(0.5, 0.5)
+            ParticleEmitter.LightEmission = 1  -- Increased for a glowing effect
+            ParticleEmitter.LockedToPart = true
+            ParticleEmitter.Rate = 5  -- Higher rate for more intense aura
+            ParticleEmitter.Size = NumberSequence.new({
+                NumberSequenceKeypoint.new(0, 4, 0),  -- Smaller size for a more compact aura
+                NumberSequenceKeypoint.new(1, 6, 0)   -- Slightly larger at the end
+            })
+            ParticleEmitter.Speed = NumberRange.new(0, 0)
+            ParticleEmitter.Texture = [[http://www.roblox.com/asset/?id=14904853757]]  -- The original particle texture
+            ParticleEmitter.Transparency = NumberSequence.new({
+                NumberSequenceKeypoint.new(0, 0, 0),  -- Fully visible at start
+                NumberSequenceKeypoint.new(1, 0.5, 0) -- Gradually becomes transparent
+            })
+            ParticleEmitter.ZOffset = -1
+            ParticleEmitter.Parent = Attachment
+        end
+    end
+
+    animationTrack = animator:LoadAnimation(animation)
+    animationTrack:Play()
+    moveForward()
+end)
+
+tool.Unequipped:Connect(function()
+    moving = false
+    for i, v in character:GetDescendants() do
+        if v:IsA("Attachment") and v:FindFirstChild("ParticleEmitter") and v.Name == "sigmarun" then
+            v:Destroy()
+        end
+    end
+    if animationTrack then
+        animationTrack:Stop()
+    end
+end)
+
+
+
+
+-- Create a new ParticleEmitter and configure it for SSJG aura (smaller)
+local ParticleEmitter = Instance.new("ParticleEmitter")
+
+-- Adjust the ParticleEmitter properties for a smaller Super Saiyan God aura (red and fiery)
+ParticleEmitter.Brightness = 3  -- Keep the brightness higher for a stronger glow
+
+-- Color values adjusted for a fiery red aura
+ParticleEmitter.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.new(1, 0, 0), 0),  -- Bright red at the start
+    ColorSequenceKeypoint.new(1, Color3.new(1, 0.5, 0), 0) -- Fiery orange at the end
+})
+
+ParticleEmitter.Drag = 0.5  -- Lower drag for more dynamic effect
+ParticleEmitter.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+ParticleEmitter.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+ParticleEmitter.Lifetime = NumberRange.new(0.5, 1)  -- Slightly longer lifetime for continuous effect
+ParticleEmitter.LightEmission = 2  -- Increased light emission for a glowing effect
+ParticleEmitter.LockedToPart = true  -- Keep it locked to the part
+ParticleEmitter.Rate = 20  -- Reduced rate for a less overwhelming effect
+ParticleEmitter.Size = NumberSequence.new({
+    NumberSequenceKeypoint.new(0, 4, 0),  -- Smaller size for a more compact aura
+    NumberSequenceKeypoint.new(1, 5, 0)  -- Slightly larger size at the end, but still small
+})
+ParticleEmitter.Speed = NumberRange.new(0, 0)  -- No speed for a static effect
+ParticleEmitter.Texture = "rbxassetid://14904853757"  -- Use the original asset ID for the particle texture
+ParticleEmitter.Transparency = NumberSequence.new({
+    NumberSequenceKeypoint.new(0, 0, 0),  -- Fully visible at start
+    NumberSequenceKeypoint.new(1, 0.3, 0)  -- Gradually becomes slightly transparent
+})
+ParticleEmitter.ZOffset = 1  -- Bring the aura in front of the character
+
+-- Parent to the torso
+local player = game.Players.LocalPlayer  -- Change to a server script if needed
+local character = player.Character or player.CharacterAdded:Wait()
+local torso = character:WaitForChild("Torso") or character:WaitForChild("UpperTorso")  -- Get the torso (for R15, use UpperTorso)
+
+local attachment = Instance.new("Attachment")  -- Create an Attachment
+attachment.Parent = torso  -- Parent it to the torso
+attachment.Position = Vector3.new(0, 0, 0)  -- Position it directly at the torso center
+
+ParticleEmitter.Parent = attachment  -- Set the ParticleEmitter to the attachment
+
+-- Keep the ParticleEmitter enabled indefinitely
+ParticleEmitter.Enabled = true  -- Ensure the ParticleEmitter is enabled
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+-- Stop any playing animation tracks
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+
+
+-- Variables
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+-- Create BillboardGui
+local billboardGui = Instance.new("BillboardGui")
+billboardGui.Name = "SSJGHealthBar"
+billboardGui.Parent = character
+billboardGui.Adornee = humanoidRootPart -- Attach it to the HumanoidRootPart
+billboardGui.Size = UDim2.new(8, 0, 2, 0) -- Size of the GUI
+billboardGui.StudsOffset = Vector3.new(0, 3, 0) -- Position it above the player's head
+billboardGui.AlwaysOnTop = true
+
+-- Create Background Frame
+local background = Instance.new("Frame")
+background.Name = "Background"
+background.Parent = billboardGui
+background.Size = UDim2.new(1, 0, 0.5, 0) -- Full width and part height
+background.Position = UDim2.new(0, 0, 0.5, 0)
+background.BackgroundColor3 = Color3.new(0.1, 0, 0.1) -- Dark red-purple background
+background.BorderSizePixel = 0
+
+-- Create the Health Bar
+local healthBar = Instance.new("Frame")
+healthBar.Name = "HealthBar"
+healthBar.Parent = background
+healthBar.Size = UDim2.new(1, 0, 1, 0)
+healthBar.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Bright red health bar
+healthBar.BorderSizePixel = 0
+
+-- Add Gradient to the Health Bar
+local gradient = Instance.new("UIGradient")
+gradient.Parent = healthBar
+gradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 70, 70)), -- Lighter red
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0)) -- Darker red
+})
+
+-- Add Corner Rounding
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 8) -- Slightly rounded edges
+corner.Parent = background
+corner:Clone().Parent = healthBar
+
+-- Create the GOKU Label
+local nameLabel = Instance.new("TextLabel")
+nameLabel.Name = "NameLabel"
+nameLabel.Parent = billboardGui
+nameLabel.Size = UDim2.new(1, 0, 0.5, 0)
+nameLabel.Position = UDim2.new(0, 0, 0, 0)
+nameLabel.BackgroundTransparency = 1
+nameLabel.Text = "GOKU"
+nameLabel.TextColor3 = Color3.fromRGB(255, 0, 0) -- Bright red text
+nameLabel.Font = Enum.Font.Fantasy
+nameLabel.TextScaled = true
+nameLabel.TextStrokeTransparency = 0
+nameLabel.TextStrokeColor3 = Color3.new(1, 1, 1) -- White stroke for glowing effect
+
+-- Update the Health Bar Based on Player's Health
+local humanoid = character:WaitForChild("Humanoid")
+humanoid.HealthChanged:Connect(function(health)
+    local healthPercent = humanoid.Health / humanoid.MaxHealth
+    healthBar.Size = UDim2.new(healthPercent, 0, 1, 0)
+end)
