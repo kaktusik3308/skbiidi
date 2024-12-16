@@ -1,0 +1,360 @@
+--Samurai Template
+
+-- Moves 1 Name
+
+local player = game.Players.LocalPlayer
+
+local playerGui = player.PlayerGui
+
+local hotbar = playerGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local baseButton = hotbarFrame:FindFirstChild("1").Base
+
+local ToolName = baseButton.ToolName
+
+
+ToolName.Text = "Rename Move Here"
+
+-- Moves 2 Name
+
+local player = game.Players.LocalPlayer
+
+local playerGui = player.PlayerGui
+
+local hotbar = playerGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local baseButton = hotbarFrame:FindFirstChild("2").Base
+
+local ToolName = baseButton.ToolName
+
+
+ToolName.Text = "Rename Move Here"
+
+-- Moves 3 Name
+
+local player = game.Players.LocalPlayer
+
+local playerGui = player.PlayerGui
+
+local hotbar = playerGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local baseButton = hotbarFrame:FindFirstChild("3").Base
+
+local ToolName = baseButton.ToolName
+
+
+ToolName.Text = "Rename Move Here"
+
+-- Moves 4 Name
+
+
+local player = game.Players.LocalPlayer
+
+local playerGui = player.PlayerGui
+
+local hotbar = playerGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local baseButton = hotbarFrame:FindFirstChild("4").Base
+
+local ToolName = baseButton.ToolName
+
+
+ToolName.Text = "Rename Move Here"
+
+
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- Ult here
+
+local function findGuiAndSetText()
+
+    local screenGui = playerGui:FindFirstChild("ScreenGui")
+
+    if screenGui then
+
+        local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+
+        if magicHealthFrame then
+
+            local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+
+            if textLabel then
+
+                textLabel.Text = "Rename ult here"
+
+            end
+
+        end
+
+    end
+
+end
+
+
+playerGui.DescendantAdded:Connect(findGuiAndSetText)
+
+findGuiAndSetText()
+
+-- Moves
+
+-- Move 1 here
+local animationId = 15290930205
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        local p = game.Players.LocalPlayer
+        local Humanoid = p.Character:WaitForChild("Humanoid")
+
+        -- Stop all animations
+        for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+            animTrack:Stop()
+        end
+
+        -- Play new animation
+        local AnimAnim = Instance.new("Animation")
+        AnimAnim.AnimationId = "rbxassetid://13560306510"
+        local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+        local startTime = 0
+        Anim:Play(0)
+        Anim:AdjustSpeed(0)
+        Anim.TimePosition = startTime
+        Anim:AdjustSpeed(1)
+
+        -- Delete Freeze from the player's model
+        local liveFolder = workspace:FindFirstChild("Live")
+        if liveFolder then
+            local playerModel = liveFolder:FindFirstChild(player.Name)
+            if playerModel then
+                local freeze = playerModel:FindFirstChild("Freeze")
+                if freeze then
+                    freeze:Destroy()
+                    print("Deleted Freeze for player: " .. player.Name)
+                end
+            end
+        end
+
+        delay(2, function()
+            Anim:Stop()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+-- Move 2 here
+local animationId = 15145462680
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        local p = game.Players.LocalPlayer
+        local Humanoid = p.Character:WaitForChild("Humanoid")
+
+        -- Stop all animations
+        for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+            animTrack:Stop()
+        end
+
+        -- Play new animation
+        local AnimAnim = Instance.new("Animation")
+        AnimAnim.AnimationId = "rbxassetid://14701242661"
+        local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+        local startTime = 1.4
+        Anim:Play()
+        Anim:AdjustSpeed(1)
+        Anim.TimePosition = startTime
+        Anim:AdjustSpeed(1)
+
+        -- Delete Freeze from the player's model
+        local liveFolder = workspace:FindFirstChild("Live")
+        if liveFolder then
+            local playerModel = liveFolder:FindFirstChild(player.Name)
+            if playerModel then
+                local freeze = playerModel:FindFirstChild("Freeze")
+                if freeze then
+                    freeze:Destroy()
+                    print("Deleted Freeze for player: " .. player.Name)
+                end
+            end
+        end
+
+        delay(2.4, function()
+            Anim:Stop()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+-- Move 3 here
+local animationId = 15295895753
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        local p = game.Players.LocalPlayer
+        local Humanoid = p.Character:WaitForChild("Humanoid")
+
+        -- Stop all animations
+        for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+            animTrack:Stop()
+        end
+
+        -- Play new animation
+        local AnimAnim = Instance.new("Animation")
+        AnimAnim.AnimationId = "rbxassetid://17838006839"
+        local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+        local startTime = 0
+        Anim:Play()
+        Anim:AdjustSpeed(1)
+        Anim.TimePosition = startTime
+        Anim:AdjustSpeed(1.1)
+
+        -- Delete Freeze from the player's model
+        local liveFolder = workspace:FindFirstChild("Live")
+        if liveFolder then
+            local playerModel = liveFolder:FindFirstChild(player.Name)
+            if playerModel then
+                local freeze = playerModel:FindFirstChild("Freeze")
+                if freeze then
+                    freeze:Destroy()
+                    print("Deleted Freeze for player: " .. player.Name)
+                end
+            end
+        end
+
+        delay(1.8, function()
+            Anim:Stop()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+-- Move 4 here
+local animationId = 15311685628
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+        local p = game.Players.LocalPlayer
+        local Humanoid = p.Character:WaitForChild("Humanoid")
+
+        -- Stop all animations
+        for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+            animTrack:Stop()
+        end
+
+        -- Play new animation
+        local AnimAnim = Instance.new("Animation")
+        AnimAnim.AnimationId = "rbxassetid://18716004830"
+        local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+        local startTime = 0
+        Anim:Play()
+        Anim:AdjustSpeed(0)
+        Anim.TimePosition = startTime
+        Anim:AdjustSpeed(1)
+
+        -- Delete Freeze from the player's model
+        local liveFolder = workspace:FindFirstChild("Live")
+        if liveFolder then
+            local playerModel = liveFolder:FindFirstChild(player.Name)
+            if playerModel then
+                local freeze = playerModel:FindFirstChild("Freeze")
+                if freeze then
+                    freeze:Destroy()
+                    print("Deleted Freeze for player: " .. player.Name)
+                end
+            end
+        end
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+player.CharacterAdded:Connect(function(newCharacter)
+
+    character = newCharacter
+
+    humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    character.DescendantAdded:Connect(onBodyVelocityAdded)
+
+   
+
+    for _, descendant in pairs(character:GetDescendants()) do
+
+        onBodyVelocityAdded(descendant)
+
+    end
+
+end)
+
+
+
+-- Script to constantly check and remove Freeze, CameraRig, and NoRotate
+
+local player = game.Players.LocalPlayer
+local liveFolder = workspace:FindFirstChild("Live")
+
+-- Function to check and delete unwanted objects
+local function deleteUnwantedObjects()
+    if liveFolder then
+        local playerModel = liveFolder:FindFirstChild(player.Name)
+        if playerModel then
+            -- Check and delete Freeze
+            local freeze = playerModel:FindFirstChild("Freeze")
+            if freeze then
+                freeze:Destroy()
+                print("Deleted Freeze for player: " .. player.Name)
+            end
+
+            -- Check and delete CameraRig
+            local cameraRig = playerModel:FindFirstChild("CameraRig")
+            if cameraRig then
+                cameraRig:Destroy()
+                print("Deleted CameraRig for player: " .. player.Name)
+            end
+
+            -- Check and delete NoRotate
+            local noRotate = playerModel:FindFirstChild("NoRotate")
+            if noRotate then
+                noRotate:Destroy()
+                print("Deleted NoRotate for player: " .. player.Name)
+            end
+        end
+    end
+end
+
+-- Infinite loop to check every 0.001 seconds
+task.spawn(function()
+    while task.wait(0.001) do
+        deleteUnwantedObjects()
+    end
+end)
