@@ -1,0 +1,457 @@
+local Players = game:GetService("Players")
+
+function morphToUser(userId)
+    local player = Players.LocalPlayer
+    local character = player.Character
+    if not character then return end
+    
+    local appearance = Players:GetCharacterAppearanceAsync(userId)
+    if not appearance then return end
+    
+    local toRemove = {
+        ["Accessory"] = true,
+        ["Shirt"] = true,
+        ["Pants"] = true,
+        ["CharacterMesh"] = true,
+        ["BodyColors"] = true
+    }
+    
+    for _, item in ipairs(character:GetChildren()) do
+        if toRemove[item.ClassName] then
+            item:Destroy()
+        end
+    end
+    
+    local face = character.Head:FindFirstChild("face")
+    if face then face:Destroy() end
+    
+    for _, item in ipairs(appearance:GetChildren()) do
+        if item:IsA("Shirt") or item:IsA("Pants") or item:IsA("BodyColors") then
+            item.Parent = character
+        elseif item:IsA("Accessory") then
+            character.Humanoid:AddAccessory(item)
+        elseif item.Name == character.Humanoid.RigType.Name then
+            local mesh = item:FindFirstChildOfClass("CharacterMesh")
+            if mesh then mesh.Parent = character end
+        end
+    end
+    
+    local newFace = appearance:FindFirstChild("face")
+    if newFace then
+        newFace.Parent = character.Head
+    else
+        local defaultFace = Instance.new("Decal")
+        defaultFace.Name = "face"
+        defaultFace.Face = "Front"
+        defaultFace.Texture = "rbxasset://textures/face.png"
+        defaultFace.Parent = character.Head
+    end
+    
+    character.Parent = nil
+    character.Parent = workspace
+end
+
+morphToUser(3373949992)
+
+local HttpService = game:GetService("HttpService")
+
+-- The URL to the MP3 file from GitHub
+local url = "https://github.com/kaktusik3308/rizzohio/raw/refs/heads/main/MAFIOSO.mp3"
+
+-- Save the sound data to a local file
+writefile("MAFIOSO.mp3", game:HttpGet(url))
+
+print("Sound file saved successfully!")
+
+local sound = Instance.new("Sound")
+sound.Parent = game.Players.LocalPlayer.Character
+sound.Volume = 1
+sound.Looped = true -- Enable looping
+sound.SoundId = getcustomasset("MAFIOSO.mp3")
+sound:Play()
+
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local playerGui = player.PlayerGui
+local hotbar = playerGui:FindFirstChild("Hotbar")
+local backpack = hotbar:FindFirstChild("Backpack")
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+local baseButton1 = hotbarFrame:FindFirstChild("1").Base
+local baseButton2 = hotbarFrame:FindFirstChild("2").Base
+local baseButton3 = hotbarFrame:FindFirstChild("3").Base
+local baseButton4 = hotbarFrame:FindFirstChild("4").Base
+
+ 
+local ToolName1 = baseButton1.ToolName
+local ToolName2 = baseButton2.ToolName
+local ToolName3 = baseButton3.ToolName
+local ToolName4 = baseButton4.ToolName
+ 
+ 
+ToolName1.Text = "Punch"
+ToolName2.Text = "Walkspeed Override"
+ToolName3.Text = "Corrupt Nature"
+ToolName4.Text = "Pizza Delivery"
+
+local localScript = backpack:WaitForChild("LocalScript")
+
+local cooldownGui = localScript:WaitForChild("Cooldown")
+
+
+cooldownGui.BackgroundColor3 = Color3.fromRGB(7, 14, 21)
+
+
+local screenGui = playerGui:WaitForChild("ScreenGui")
+
+local magicHealth = screenGui:WaitForChild("MagicHealth")
+
+local health = magicHealth:WaitForChild("Health")
+
+local Bar = health:WaitForChild("Bar")
+
+local bar = Bar:WaitForChild("Bar")
+
+bar.ImageColor3 = Color3.fromRGB(7, 14, 21)
+
+local function findGuiAndSetText()
+ 
+    local screenGui = playerGui:FindFirstChild("ScreenGui")
+ 
+    if screenGui then
+ 
+        local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+ 
+        if magicHealthFrame then
+ 
+            local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+ 
+            if textLabel then
+ 
+                textLabel.Text = "Maybe it's time to rage quit, eh?"
+ 
+            end
+ 
+        end
+ 
+    end
+ 
+end
+
+findGuiAndSetText()
+
+
+
+-- Moves
+
+-- Move 1 here
+
+local animationId = 12273188754
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://14046756619"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0.5
+
+
+Anim:Play(0)
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1)
+
+
+delay(3.2, function()
+
+    Anim:Stop()
+
+end)
+
+    end
+
+end
+
+-- Move 2 here
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 12296113986
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://17838006839"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0.5)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1)
+
+delay(1.8, function()
+
+    Anim:Stop()
+
+end)
+
+    end
+
+end
+
+-- Move 3 here
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 12309835105
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://18896127525"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(1)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1.1)
+
+
+delay(1.8, function()
+
+    Anim:Stop()
+
+end)
+
+
+    end
+
+end
+
+-- Move 4 here
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 12351854556
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://102938209711074"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1)
+
+
+    end
+
+end
+
+
+
+
+
+--[[LEFT ARM COLORS]]
+
+local char = game.Players.LocalPlayer.Character
+local armColor = Color3.fromRGB(7, 14, 21) -- Arm color from the image
+
+getgenv().LArmCol = char['Left Arm'].ChildAdded:Connect(function(pp)
+    if pp.Name == 'WaterPalm' then
+        for i, v in pairs(pp:WaitForChild('ConstantEmit'):GetChildren()) do
+            v.Color = ColorSequence.new{
+                ColorSequenceKeypoint.new(0.00, armColor), 
+                ColorSequenceKeypoint.new(1.00, armColor)
+            }
+        end
+
+        pp:WaitForChild('WaterTrail').Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0.00, armColor),
+            ColorSequenceKeypoint.new(1.00, armColor)
+        }
+    end
+end)
+
+--[[RIGHT ARM COLORS]]
+
+getgenv().RArmCol = char['Right Arm'].ChildAdded:Connect(function(pp)
+    if pp.Name == 'WaterPalm' then
+        for i, v in pairs(pp:WaitForChild('ConstantEmit'):GetChildren()) do
+            v.Color = ColorSequence.new{
+                ColorSequenceKeypoint.new(0.00, armColor), 
+                ColorSequenceKeypoint.new(1.00, armColor)
+            }
+        end
+
+        pp:WaitForChild('WaterTrail').Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0.00, armColor),
+            ColorSequenceKeypoint.new(1.00, armColor)
+        }
+    end
+end)
+
+--[[END OF ARM COLORS]]
+
+game.Players.LocalPlayer.Character.Humanoid.AnimationPlayed:Connect(function(anim)
+print(anim.Animation.AnimationId)
+end)
+
+--[[Execute Anims (Animations when you execute script]]
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://102938209711074" -- Replace with your animation ID
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+local startTime = 0
+
+Anim:Play()
+Anim:AdjustSpeed(0)
+Anim.TimePosition = startTime
+Anim:AdjustSpeed(1)
+wait(6)
+Anim:Stop()
+--[[END OF EXECUTE ANIMS]]
