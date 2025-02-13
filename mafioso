@@ -1,0 +1,322 @@
+
+
+local Players = game:GetService("Players")
+
+function morphToUser(userId)
+    local player = Players.LocalPlayer
+    local character = player.Character
+    if not character then return end
+    
+    local appearance = Players:GetCharacterAppearanceAsync(userId)
+    if not appearance then return end
+    
+    local toRemove = {
+        ["Accessory"] = true,
+        ["Shirt"] = true,
+        ["Pants"] = true,
+        ["CharacterMesh"] = true,
+        ["BodyColors"] = true
+    }
+    
+    for _, item in ipairs(character:GetChildren()) do
+        if toRemove[item.ClassName] then
+            item:Destroy()
+        end
+    end
+    
+    local face = character.Head:FindFirstChild("face")
+    if face then face:Destroy() end
+    
+    for _, item in ipairs(appearance:GetChildren()) do
+        if item:IsA("Shirt") or item:IsA("Pants") or item:IsA("BodyColors") then
+            item.Parent = character
+        elseif item:IsA("Accessory") then
+            character.Humanoid:AddAccessory(item)
+        elseif item.Name == character.Humanoid.RigType.Name then
+            local mesh = item:FindFirstChildOfClass("CharacterMesh")
+            if mesh then mesh.Parent = character end
+        end
+    end
+    
+    local newFace = appearance:FindFirstChild("face")
+    if newFace then
+        newFace.Parent = character.Head
+    else
+        local defaultFace = Instance.new("Decal")
+        defaultFace.Name = "face"
+        defaultFace.Face = "Front"
+        defaultFace.Texture = "rbxasset://textures/face.png"
+        defaultFace.Parent = character.Head
+    end
+    
+    character.Parent = nil
+    character.Parent = workspace
+end
+
+morphToUser(3373949992)
+
+local HttpService = game:GetService("HttpService")
+
+-- The URL to the MP3 file from GitHub
+local url = "https://github.com/kaktusik3308/rizzohio/raw/refs/heads/main/MAFIOSO.mp3"
+
+-- Save the sound data to a local file
+writefile("MAFIOSO.mp3", game:HttpGet(url))
+
+print("Sound file saved successfully!")
+
+local sound = Instance.new("Sound")
+sound.Parent = game.Players.LocalPlayer.Character
+sound.Volume = 1
+sound.Looped = true -- Enable looping
+sound.SoundId = getcustomasset("MAFIOSO.mp3")
+sound:Play()
+
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local playerGui = player.PlayerGui
+local hotbar = playerGui:FindFirstChild("Hotbar")
+local backpack = hotbar:FindFirstChild("Backpack")
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+local baseButton1 = hotbarFrame:FindFirstChild("1").Base
+local baseButton2 = hotbarFrame:FindFirstChild("2").Base
+local baseButton3 = hotbarFrame:FindFirstChild("3").Base
+local baseButton4 = hotbarFrame:FindFirstChild("4").Base
+
+ 
+local ToolName1 = baseButton1.ToolName
+local ToolName2 = baseButton2.ToolName
+local ToolName3 = baseButton3.ToolName
+local ToolName4 = baseButton4.ToolName
+ 
+ 
+ToolName1.Text = "Punch"
+ToolName2.Text = "Walkspeed Override"
+ToolName3.Text = "Corrupt Nature"
+ToolName4.Text = "Pizza Delivery"
+
+local localScript = backpack:WaitForChild("LocalScript")
+
+local cooldownGui = localScript:WaitForChild("Cooldown")
+
+
+cooldownGui.BackgroundColor3 = Color3.fromRGB(7, 14, 21)
+
+
+local screenGui = playerGui:WaitForChild("ScreenGui")
+
+local magicHealth = screenGui:WaitForChild("MagicHealth")
+
+local health = magicHealth:WaitForChild("Health")
+
+local Bar = health:WaitForChild("Bar")
+
+local bar = Bar:WaitForChild("Bar")
+
+bar.ImageColor3 = Color3.fromRGB(7, 14, 21)
+
+local function findGuiAndSetText()
+ 
+    local screenGui = playerGui:FindFirstChild("ScreenGui")
+ 
+    if screenGui then
+ 
+        local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+ 
+        if magicHealthFrame then
+ 
+            local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+ 
+            if textLabel then
+ 
+                textLabel.Text = "Maybe it's time to rage quit, eh?"
+ 
+            end
+ 
+        end
+ 
+    end
+ 
+end
+
+findGuiAndSetText()
+
+
+
+-- Preload all sounds at the start for zero delay
+local sounds = {
+    Move1 = "MAFIOSOMOVE1.mp3", -- Sound for Move 1
+    Move2 = "MAFIOSOMOVE2.mp3", -- Sound for Move 2 and Move 5
+    Move3 = "MAFIOSOMOVE3.mp3", -- Sound for Move 3
+    Move4 = "MAFIOSOMOVE4.mp3",      -- Sound for Move 4
+    Move6 = "MAFIOSOULT.mp3"  -- Sound for Move 6
+}
+
+-- Function to preload all sounds from GitHub
+local function PreloadSounds()
+    for _, soundFile in pairs(sounds) do
+        local url = "https://github.com/kaktusik3308/rizzohio/raw/refs/heads/main/" .. soundFile
+        writefile(soundFile, game:HttpGet(url))
+    end
+    print("All sounds preloaded successfully!")
+end
+
+PreloadSounds() -- Call to preload sounds
+
+-- Function to play animation and sound simultaneously for each move
+local function PlayAnimWithSound(animId, customAnimId, soundFile)
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+
+    -- Listen for the specific animation being played
+    humanoid.AnimationPlayed:Connect(function(animationTrack)
+        if animationTrack.Animation.AnimationId == "rbxassetid://" .. animId then
+
+            -- Stop any currently playing animations
+            for _, animTrack in pairs(humanoid:GetPlayingAnimationTracks()) do
+                animTrack:Stop()
+            end
+
+            -- Create and load the custom animation
+            local customAnim = Instance.new("Animation")
+            customAnim.AnimationId = "rbxassetid://" .. customAnimId
+            local customAnimTrack = humanoid:LoadAnimation(customAnim)
+            customAnimTrack:Play()
+
+            -- Create and play the preloaded sound instantly
+            local sound = Instance.new("Sound")
+            sound.SoundId = getcustomasset(soundFile)
+            sound.Volume = 1
+            sound.Parent = character
+            sound:Play()
+
+            -- Stop the animation when the sound finishes
+            sound.Ended:Connect(function()
+                customAnimTrack:Stop()
+            end)
+        end
+    end)
+end
+
+-- Move 1 Configuration
+-- Triggers when animation ID 12273188754 is played
+-- Plays custom animation 14046756619 and sound MAFIOSOMOVE1.mp3
+PlayAnimWithSound(12273188754, 14046756619, sounds.Move1)
+
+-- Move 2 Configuration
+-- Triggers when animation ID 12296113986 is played
+-- Plays custom animation 17838006839 and sound MAFIOSOMOVE2.mp3
+PlayAnimWithSound(12296113986, 17838006839, sounds.Move2)
+
+-- Move 3 Configuration
+-- Triggers when animation ID 12309835105 is played
+-- Plays custom animation 18896127525 and sound MAFIOSOMOVE3.mp3
+PlayAnimWithSound(12309835105, 18896127525, sounds.Move3)
+
+-- Move 4 Configuration
+-- Triggers when animation ID 13603396939 is played
+-- Plays custom animation 102938209711074 and sound MAFIOSO.mp3
+PlayAnimWithSound(13603396939, 102938209711074, sounds.Move4)
+
+-- Move 5 Configuration
+-- Triggers when animation ID 16310343179 is played
+-- Plays custom animation 15944317351 and reuses sound MAFIOSOMOVE2.mp3 from Move 2
+PlayAnimWithSound(16310343179, 15944317351, sounds.Move2)
+
+-- Move 6 Configuration
+-- Triggers when animation ID 12342141464 is played
+-- Plays custom animation 102938209711074 and sound MAFIOSOSPAWN.mp3
+PlayAnimWithSound(12342141464, 13716964686, sounds.Move6)
+
+
+
+
+
+--[[LEFT ARM COLORS]]
+
+local char = game.Players.LocalPlayer.Character
+local armColor = Color3.fromRGB(7, 14, 21) -- Arm color from the image
+
+getgenv().LArmCol = char['Left Arm'].ChildAdded:Connect(function(pp)
+    if pp.Name == 'WaterPalm' then
+        for i, v in pairs(pp:WaitForChild('ConstantEmit'):GetChildren()) do
+            v.Color = ColorSequence.new{
+                ColorSequenceKeypoint.new(0.00, armColor), 
+                ColorSequenceKeypoint.new(1.00, armColor)
+            }
+        end
+
+        pp:WaitForChild('WaterTrail').Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0.00, armColor),
+            ColorSequenceKeypoint.new(1.00, armColor)
+        }
+    end
+end)
+
+--[[RIGHT ARM COLORS]]
+
+getgenv().RArmCol = char['Right Arm'].ChildAdded:Connect(function(pp)
+    if pp.Name == 'WaterPalm' then
+        for i, v in pairs(pp:WaitForChild('ConstantEmit'):GetChildren()) do
+            v.Color = ColorSequence.new{
+                ColorSequenceKeypoint.new(0.00, armColor), 
+                ColorSequenceKeypoint.new(1.00, armColor)
+            }
+        end
+
+        pp:WaitForChild('WaterTrail').Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0.00, armColor),
+            ColorSequenceKeypoint.new(1.00, armColor)
+        }
+    end
+end)
+
+--[[END OF ARM COLORS]]
+
+game.Players.LocalPlayer.Character.Humanoid.AnimationPlayed:Connect(function(anim)
+print(anim.Animation.AnimationId)
+end)
+
+--[[Execute Anims (Animations when you execute script]]
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://102938209711074" -- Replace with your animation ID
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+local startTime = 0
+
+Anim:Play()
+Anim:AdjustSpeed(0)
+local HttpService = game:GetService("HttpService")
+
+-- The URL to the MP3 file from GitHub
+local url = "https://github.com/kaktusik3308/rizzohio/raw/refs/heads/main/MAFIOSOSPAWN.mp3"
+
+-- Save the sound data to a local file
+writefile("MAFIOSOSPAWN.mp3", game:HttpGet(url))
+
+print("Sound file saved successfully!")
+
+local sound = Instance.new("Sound")
+sound.Parent = game.Players.LocalPlayer.Character
+sound.Volume = 1
+sound.Looped = false -- Enable looping
+sound.SoundId = getcustomasset("MAFIOSOSPAWN.mp3")
+sound:Play()
+Anim.TimePosition = startTime
+Anim:AdjustSpeed(1)
+wait(6)
+Anim:Stop()
+--[[END OF EXECUTE ANIMS]]
